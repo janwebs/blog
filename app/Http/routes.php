@@ -12,5 +12,45 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // forma de llamar a una vista que esta en resources/views/
+    //return view('welcome');
+    // forma de llamar a la vista index.blade.php en una subCarpeta en views/
+    return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
+});
+
+// ruta convencional
+Route::get('saludo',function(){
+	echo "Hola";
+});
+
+//ruta con parametros
+Route::get('saludo_con_parametro/{nombre}',function($nombre){
+	echo "Hola ".$nombre;
+});
+
+
+//ruta con parametros opcional
+Route::get('saludo_con_parametro_opcional/{nombre?}',function($nombre = "persona desconocida"){
+	echo "Hola ".$nombre;
+});
+
+//ruta con nombre personalizado, que llama a un metodo de un controlador
+Route::get('saludo',[
+	'as' 	=> 'saludos',
+	'uses' 	=> 'UserControler@index'
+]);
+
+//grupo de rutas
+Route::group(['prefix' => 'articles'], function(){
+	Route::get('view/{article?}', function($article = "desconocido"){
+		echo "articulo: ".$article;
+	});
+});
+
+//grupo de rutas
+Route::group(['prefix' => 'articles'], function(){
+	Route::get('viewArticle/{id}', [
+		'uses'	=> 'ArticleController@viewArticle',
+		'as'	=> 'viewArticle'
+	]);
 });
