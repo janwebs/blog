@@ -18,39 +18,56 @@ Route::get('/', function () {
     return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
 });
 
+//grupo de rutas
+Route::group(['prefix' => 'admin'], function(){
+	
+	Route::resource('users', 'UsersController');
+
+});
+
 // ruta convencional
+/*
 Route::get('saludo',function(){
 	echo "Hola";
 });
+*/
 
 //ruta con parametros
-Route::get('saludo_con_parametro/{nombre}',function($nombre){
+/*Route::get('saludo_con_parametro/{nombre}',function($nombre){
 	echo "Hola ".$nombre;
 });
-
+*/
 
 //ruta con parametros opcional
+/*
 Route::get('saludo_con_parametro_opcional/{nombre?}',function($nombre = "persona desconocida"){
 	echo "Hola ".$nombre;
 });
+*/
 
 //ruta con nombre personalizado, que llama a un metodo de un controlador
+/*
 Route::get('saludo',[
 	'as' 	=> 'saludos',
 	'uses' 	=> 'UserControler@index'
 ]);
+*/
 
 //grupo de rutas
+/*
 Route::group(['prefix' => 'articles'], function(){
 	Route::get('view/{article?}', function($article = "desconocido"){
 		echo "articulo: ".$article;
 	});
 });
-
+*/
 //grupo de rutas
+/*
 Route::group(['prefix' => 'articles'], function(){
 	Route::get('viewArticle/{id}', [
 		'uses'	=> 'ArticleController@viewArticle',
 		'as'	=> 'viewArticle'
 	]);
 });
+*/
+////////////////////////////////////////////////////////////////////////
