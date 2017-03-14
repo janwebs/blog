@@ -13,18 +13,19 @@
 
 Route::get('/', function () {
     // forma de llamar a una vista que esta en resources/views/
-    //return view('welcome');
+    // return view('welcome');
     // forma de llamar a la vista index.blade.php en una subCarpeta en views/
     return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
 });
 
-//grupo de rutas
+// grupo de rutas
 Route::group(['prefix' => 'admin'], function(){
-	
+	// resource recibe dos parametros, el modelo y el controlador a usar
 	Route::resource('users', 'UsersController');
 
 });
 
+////////////////////////////////////////////////////////////////////////
 // ruta convencional
 /*
 Route::get('saludo',function(){

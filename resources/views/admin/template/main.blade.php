@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>@yield('title', 'Default') | Panel de Administracion</title>
 	<link rel="stylesheet" href="{{ asset('libraries/bootstrap/css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/sticky-footer.css') }}">
 </head>
 <body>
 	
@@ -13,12 +12,19 @@
 		@include('admin.template.partials.nav')
 
 		<section>
-			@yield('content')
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					@yield('title')
+				</div>
+				<div class="panel-body">
+					@yield('content')
+				</div>
+			</div>
 		</section>	
 
-	</div>
+		@include('admin.template.partials.footer')	
 
-	@include('admin.template.partials.footer')	
+	</div>
 
 	<script src="{{ asset('libraries/jquery/js/jquery.js') }}"></script>
 	<script src="{{ asset('libraries/bootstrap/js/bootstrap.js') }}"></script>

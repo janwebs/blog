@@ -10,5 +10,4 @@
 			{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese Nombre', 'required']) !!}
 		</div>
 	{!!	Form::close() !!}
-
 @endsection
