@@ -14,7 +14,7 @@
 		<section>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					@yield('title')
+					<strong>@yield('title')</strong>
 				</div>
 				<div class="panel-body">
 					@yield('content')

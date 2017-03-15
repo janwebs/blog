@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+//agregando modelo User
+use App\User;
+
 class UsersController extends Controller
 {
     /**
@@ -16,7 +19,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::orderBy('id','ASC')->paginate(2);
+        return view('admin.users.index')->with('users', $users);
+
     }
 
     /**
@@ -37,7 +42,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd('llegó al método store');
+        //dd($request->all());
+
+        $user = new User($request->all());
+        $user->password = bcrypt($request->password);
+        //dd($user);
+        $user->save();
+        dd('Usuario creado');
     }
 
     /**
