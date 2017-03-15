@@ -28,12 +28,13 @@
 				</td>
 				<td>
 					<a href="" class="btn btn-primary btn-xs">Ver</a>
-					<a href="" class="btn btn-warning btn-xs">Editar</a>
-					<a href="" class="btn btn-danger btn-xs">Eliminar</a>
+					<a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-xs">Editar</a>
+					<a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('¿Desea eliminar el usuario {{ $user->name }}?')">Eliminar</a>
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
+	<hr>
 	{!! $users->render() !!}
 @endsection

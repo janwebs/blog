@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+//
+use Laracasts\Flash\Flash;
+
+use App\Http\Requests\UserRequest;
+
 //agregando modelo User
 use App\User;
 
@@ -19,7 +24,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','ASC')->paginate(2);
+        $users = User::orderBy('id','ASC')->paginate(5);
         return view('admin.users.index')->with('users', $users);
 
     }
@@ -40,16 +45,13 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //dd('llegó al método store');
-        //dd($request->all());
-
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
-        //dd($user);
         $user->save();
-        dd('Usuario creado');
+        Flash::success("Se ha registrado el usuario ".$user->name." exitosamente");
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -71,7 +73,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.edit')->with('user',$user);
     }
 
     /**
@@ -83,7 +86,13 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name   = $request->name;
+        $user->email  = $request->email;
+        $user->type   = $request->type;
+        $user->save();
+        Flash::warning('Se ha modificado el usuario '.$user->name.' exitosamente');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -94,6 +103,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        Flash::error('Se ha eliminado el usuario '.$user->name.' exitosamente');
+        return redirect()->route('admin.users.index');
     }
 }

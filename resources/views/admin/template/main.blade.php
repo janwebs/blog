@@ -17,6 +17,7 @@
 					<strong>@yield('title')</strong>
 				</div>
 				<div class="panel-body">
+					@include('flash::message')
 					@yield('content')
 				</div>
 			</div>

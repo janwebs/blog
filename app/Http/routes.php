@@ -22,6 +22,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function(){
 	// resource recibe dos parametros, el modelo y el controlador a usar
 	Route::resource('users', 'UsersController');
+	Route::get('users/{id}/destroy', [
+		'uses' 	=> 'UsersController@destroy',
+		'as'	=> 'admin.users.destroy'
+	]);
 
 });
 
