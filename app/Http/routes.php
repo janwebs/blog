@@ -18,7 +18,18 @@ Route::get('/', function () {
     return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
 });
 
-// grupo de rutas
+////////////////////////////////////////////////////////////////////////////////
+//                              grupo de rutas                                //
+////////////////////////////////////////////////////////////////////////////////
+//
+// rutas de autenticacion
+//
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+//
+// rutas de administracion
+//
 Route::group(['prefix' => 'admin'], function(){
 	// resource recibe dos parametros, el modelo y el controlador a usar
 	Route::resource('users', 'UsersController');
