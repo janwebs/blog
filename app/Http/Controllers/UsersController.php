@@ -90,6 +90,9 @@ class UsersController extends Controller
         $user->name   = $request->name;
         $user->email  = $request->email;
         $user->type   = $request->type;
+        // una manera resumida para sustiturit las 3 instrucciones anteriores es usar el fill
+        // $user->fill($request->all()); // <- esto hace la asignacion de los valores que trae el 
+                                        //     request a la estructura de una vez evitando hacer una intruccion por campo como $user->name   = $request->name;
         $user->save();
         Flash::warning('Se ha modificado el usuario '.$user->name.' exitosamente');
         return redirect()->route('admin.users.index');

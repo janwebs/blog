@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UserRequest extends Request
+class CategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class UserRequest extends Request
     public function authorize()
     {
         // por defecto esta en false pero lo pondremos en true
-        return true;
+        return true; 
     }
 
     /**
@@ -25,9 +25,7 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            'name'     => 'min:4|max:120|required',
-            'email'    => 'min:4|max:250|required|unique:users',
-            'password' => 'min:4|max:120|required'
+            'name' => 'min:4|max:120|required|unique:categories'
         ];
     }
 }
