@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['as' => 'admin.index', function () {
     // forma de llamar a una vista que esta en resources/views/
     // return view('welcome');
     // forma de llamar a la vista index.blade.php en una subCarpeta en views/
     return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
-});
+}]);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                              grupo de rutas                                //
@@ -24,21 +24,12 @@ Route::get('/', function () {
 //
 // rutas de administracion
 //
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'],  function(){
+//Route::group(['prefix' => 'admin'], function(){
 
-	// rutas de autenticacion
-	Route::get('auth/login', [
-		'uses' 	=> 'Auth\AuthController@getLogin',
-		'as'	=> 'admin.auth.login'
-	]);
-	Route::post('auth/login', [
-		'uses' 	=> 'Auth\AuthController@postLogin',
-		'as'	=> 'admin.auth.login'
-	]);
-	Route::get('auth/logout', [
-		'uses' 	=> 'Auth\AuthController@getLogout',
-		'as'	=> 'admin.auth.login'
-	]);
+	Route::get('/',['as' => 'admin.index', function () {
+    	return view('welcome');
+    }]);
 
 	// resource recibe dos parametros, el modelo y el controlador a usar
 	Route::resource('users', 'UsersController');
@@ -46,6 +37,7 @@ Route::group(['prefix' => 'admin'], function(){
 		'uses' 	=> 'UsersController@destroy',
 		'as'	=> 'admin.users.destroy'
 	]);
+
 	Route::resource('categories', 'CategoriesController');
 	Route::get('categories/{id}/destroy', [
 		'uses' 	=> 'CategoriesController@destroy',
@@ -54,7 +46,23 @@ Route::group(['prefix' => 'admin'], function(){
 
 });
 
-////////////////////////////////////////////////////////////////////////
+// rutas de autenticacion
+Route::get('admin/auth/login', [
+	'uses' 	=> 'Auth\AuthController@getLogin',
+	'as'	=> 'admin.auth.login'
+]);
+
+Route::post('admin.auth/login', [
+	'uses' 	=> 'Auth\AuthController@postLogin',
+	'as'	=> 'admin.auth.login'
+]);
+
+Route::get('admin/auth/logout', [
+	'uses' 	=> 'Auth\AuthController@getLogout',
+	'as'	=> 'admin.auth.logout'
+]);
+
+///////////////////////////////////////////////////////////////////////
 // ruta convencional
 /*
 Route::get('saludo',function(){

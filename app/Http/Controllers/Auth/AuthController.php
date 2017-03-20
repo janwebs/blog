@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
@@ -21,7 +20,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers;
 
     /**
      * Create a new authentication controller instance.
@@ -32,6 +31,10 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
+
+    protected $redirectPath = '/admin';
+
+    protected $loginPath = '/admin/auth/login';
 
     /**
      * Get a validator for an incoming registration request.
@@ -67,4 +70,5 @@ class AuthController extends Controller
     {
         return view('admin.auth.login');
     }
+
 }
