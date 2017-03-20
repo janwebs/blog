@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title','Crear usuario')
+@section('title','Crear Usuario')
 
 @section('content')
 
@@ -19,7 +19,7 @@
 		</div> 
 		<div class="form-group">
 			{!! Form::label('type', 'Tipo') !!}
-			{!! Form::select('type', [''=>'Seleccione tipo', 'member' => 'Miembro', 'admin' => 'Administrador'], null, ['class' => 'form-control', 'required']) !!}
+			{!! Form::select('type', ['member' => 'Miembro', 'admin' => 'Administrador'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una opcion', 'required']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}

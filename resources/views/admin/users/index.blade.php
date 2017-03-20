@@ -3,7 +3,8 @@
 @section('title','Lista de Usuarios')
 
 @section('content')
-	<a href="{{ route('admin.users.create') }}" class="btn btn-success btn-xs">Nuevo usuario</a>
+	<a href="{{ route('admin.users.create') }}" class="btn btn-success btn-xs pull-right">Nuevo Usuario</a>
+	<br>
 	<hr>
 	<table class="table table-striped">
 		<thead>

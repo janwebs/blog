@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title','Editar usuario '.$user->name)
+@section('title','Editar Usuario '.$user->name)
 
 @section('content')
 
@@ -15,7 +15,7 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('type', 'Tipo') !!}
-			{!! Form::select('type', [''=>'Seleccione tipo', 'member' => 'Miembro', 'admin' => 'Administrador'], $user->type, ['class' => 'form-control', 'required']) !!}
+			{!! Form::select('type', ['member' => 'Miembro', 'admin' => 'Administrador'], $user->type, ['class' => 'form-control', 'required']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::submit('Guardar', ['class'=>'btn btn-primary']) !!}
