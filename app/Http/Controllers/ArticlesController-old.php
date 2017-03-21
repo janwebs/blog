@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 //Aqui se incluye el/los modelo(s) que se usuara(n) en este controlador
 use App\Article;
 
-class ArticleController extends Controller
+class ArticlesController extends Controller
 {
    public function viewArticle($id){
         //echo "id de articulo: ".$id;
