@@ -1,24 +1,45 @@
 @extends('admin.template.main')
 
-@section('title','Editar Usuario '.$user->name)
+@section('title','Editar Articulo - '.$article->title)
 
 @section('content')
 
-	{!! Form::open(['route'=>['admin.users.update', $user], 'method'=>'PUT']) !!}
+	{!! Form::open(['route'=>['admin.articles.update', $article], 'method'=>'PUT']) !!}
 		<div class="form-group">
-			{!! Form::label('name', 'Nombre') !!}
-			{!! Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Ingrese Nombre', 'required']) !!}
+			{!! Form::label('title', 'Titulo') !!}
+			{!! Form::text('title', $article->title, ['class' => 'form-control', 'placeholder' => 'Ingrese Titulo', 'required']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('email', 'Correo Electronico') !!}
-			{!! Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'p.e. example@domain.com', 'required']) !!}
+			{!! Form::label('content', 'Contenido') !!}
+			{!! Form::textarea('content', $article->content, ['class' => 'form-control textarea-content', 'placeholder' => 'Ingrese contenido del articulo', 'required']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('type', 'Tipo') !!}
-			{!! Form::select('type', ['member' => 'Miembro', 'admin' => 'Administrador'], $user->type, ['class' => 'form-control', 'required']) !!}
+			{!! Form::label('category_id', 'Categoria') !!}
+			{!! Form::select('category_id', $categories, $article->category->id, ['class' => 'form-control select-category','placeholder' => 'Seleccione una categoria...', 'required']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::submit('Guardar', ['class'=>'btn btn-primary']) !!}
+			{!! Form::label('tags', 'Tags') !!}
+			{!! Form::select('tags[]', $tags, $article_tags, ['class' => 'form-control select-tags', 'multiple', 'required']) !!}
+		</div>
+		<div class="form-group">
+			{!! Form::submit('Editar', ['class'=>'btn btn-primary']) !!}
 		</div> 
 	{!!	Form::close() !!}
 @endsection
+@section('js')	
+	<script>
+		/* control category*/
+		$('.select-category').chosen({
+			no_results_text: 'no hay coincidencias'
+		});
+		/*control tag*/
+		$('.select-tags').chosen({
+			placeholder_text_multiple: 'Seleccione un tag...',
+			no_results_text: 'no hay tags con ese nombre'			
+		});
+		// incorporando trumbowyg
+		$('.textarea-content').trumbowyg({
+			lang: 'es'
+		});
+	</script>
+@endsection	

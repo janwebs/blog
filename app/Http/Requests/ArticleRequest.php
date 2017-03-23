@@ -25,9 +25,10 @@ class ArticleRequest extends Request
     public function rules()
     {
         return [
-            'title'         => 'required',
-            'content'       => 'required',
-            'category_id'   => 'required'
+            'title'         => 'min:8|max:255|required|unique:articles',
+            'content'       => 'min:8|max:255|required',
+            'category_id'   => 'required',
+            'image'         => 'image|required'
         ];
     }
 }

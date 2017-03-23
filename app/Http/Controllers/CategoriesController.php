@@ -22,11 +22,10 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderBy('id','ASC')->paginate(5);
+        $categories = Category::search($request->name)->orderBy('id','ASC')->paginate(5);
         return view('admin.categories.index')->with('categories', $categories);
-
     }
 
     /**
