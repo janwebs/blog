@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="{{ asset('images/laravel.png') }}">
 		<title>@yield('title', 'Default') | Panel de Administracion</title>
 		<link rel="stylesheet" href="{{ asset('libraries/bootstrap/css/bootstrap.css') }}">
 		<link rel="stylesheet" href="{{ asset('libraries/chosen/css/chosen.css') }}">

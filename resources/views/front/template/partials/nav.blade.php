@@ -17,7 +17,7 @@
       @if(Auth::user())
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-          <li><a href="{{ route('admin.index') }}">Inicio</a></li>
+          <li><a href="#">Inicio</a></li>
           <li><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
           <li><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
           <li><a href="{{ route('admin.articles.index') }}">Articulos</a></li>

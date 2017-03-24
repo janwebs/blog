@@ -11,16 +11,25 @@
 |
 */
 
-Route::get('/', ['as' => 'admin.index', function () {
+Route::get('/', ['as' => 'front.index', function () {
     // forma de llamar a una vista que esta en resources/views/
     // return view('welcome');
     // forma de llamar a la vista index.blade.php en una subCarpeta en views/
-    return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
+    // return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
+    return view('front.index'); // se puede colocar barra (/) en lugar de punto (.)
 }]);
-
 ////////////////////////////////////////////////////////////////////////////////
 //                              grupo de rutas                                //
 ////////////////////////////////////////////////////////////////////////////////
+//
+// rutas del frot-end
+//
+Route::get('/', [
+	'as' 	=> 'front.index',
+    'uses' 	=> 'FrontController@index'
+]);
+
+
 //
 // rutas de administracion
 //
@@ -28,7 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],  function(){
 //Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('/',['as' => 'admin.index', function () {
-    	return view('welcome');
+    	return view('admin.index');
     }]);
 
 	// resource recibe dos parametros, el modelo y el controlador a usar
