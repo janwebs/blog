@@ -17,15 +17,18 @@
 							<div class="panel-body">
 								<a href="#" class="thumbnail">
 									@foreach($article->images as $image)
-										<img class="img-responsive img-article" src="{{ 'images/articles/'.$image->name}}" alt="">
+										<img class="img-responsive img-article" src="{{ asset('images/articles/'.$image->name) }}" alt="">
 									@endforeach
 								</a>
 								<h3>{{ $article->title }}</h3>
 								Por: {{ $article->user->name }}
 								<hr>
-								<i class="fa fa-folder-open-o"></i><a href="">{{ $article->category->name }}</a>
+								<i class="fa fa-folder-open-o"></i> 
+								<a href="{{ route('front.search.category', $article->category->name) }}">
+									{{ $article->category->name }}
+								</a>
 								<div class="pull-right">
-									<i class="fa fa-clock-o"></i><a href="">Hace 3 minutos</a>
+									<i class="fa fa-clock-o"></i> <a href="">{{ $article->created_at->diffForHumans() }}</a>
 								</div>
 							</div>
 						</div>
@@ -34,28 +37,7 @@
 			</div>
 		</div>
 		<div class="col-md-4 aside">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Categorias</h3>
-				</div>
-				<div class="panel-body">
-					<ul class="list-group">
-						<li class="list-group-item">
-							<spam class="badge">14</spam>Noticias
-						</li>
-					</ul>
-					<ul class="list-group">
-						<li class="list-group-item">
-							<spam class="badge">2</spam>Tendencias
-						</li>
-					</ul>
-					<ul class="list-group">
-						<li class="list-group-item">
-							<spam class="badge">4</spam>Programacion
-						</li>
-					</ul>
-				</div>
-			</div>
+			@include('front.template.partials.aside')
 		</div>
 	</div>
 @endsection

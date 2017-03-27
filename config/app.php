@@ -146,6 +146,15 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
+         * Service providers personales
+        *
+        * este provider permite tener varios segmentos con codigo aparte 
+        * que se llamen varias veces pero que se desarrollan una sola vez
+        *
+        */
+        App\Providers\ComposerServiceProvider::class,
+
+        /*
          * Providers personales
          */
         Collective\Html\HtmlServiceProvider::class,

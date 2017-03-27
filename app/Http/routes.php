@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', ['as' => 'front.index', function () {
     // forma de llamar a una vista que esta en resources/views/
     // return view('welcome');
@@ -18,6 +18,7 @@ Route::get('/', ['as' => 'front.index', function () {
     // return view('welcome'); // se puede colocar barra (/) en lugar de punto (.)
     return view('front.index'); // se puede colocar barra (/) en lugar de punto (.)
 }]);
+*/
 ////////////////////////////////////////////////////////////////////////////////
 //                              grupo de rutas                                //
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +30,15 @@ Route::get('/', [
     'uses' 	=> 'FrontController@index'
 ]);
 
+Route::get('categories/{name}', [
+	'as' 	=> 'front.search.category',
+    'uses' 	=> 'FrontController@searchCategory'
+]);
+
+Route::get('tags/{name}', [
+	'as' 	=> 'front.search.tag',
+    'uses' 	=> 'FrontController@searchTag'
+]);
 
 //
 // rutas de administracion
