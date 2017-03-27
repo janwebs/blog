@@ -28,7 +28,7 @@ class FrontController extends Controller
 
     public function index()
     {
-        $articles = Article::orderBy('id', 'DESC')->paginate(4);
+        $articles = Article::orderBy('id', 'DESC')->paginate(1);
         $articles->each(function($articles){
             $articles->category;
             $articles->images;
@@ -59,5 +59,12 @@ class FrontController extends Controller
                 ->with('articles', $articles);   
     }
 
+    public function viewArticle($slug)
+    { 
+        $article = Article::findBySlugOrFail($slug);
+        
+        return view('front.index')
+                ->with('articles', $articles);   
+    }
 
 }

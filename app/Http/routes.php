@@ -40,6 +40,11 @@ Route::get('tags/{name}', [
     'uses' 	=> 'FrontController@searchTag'
 ]);
 
+Route::get('articles/{slug}', [
+	'as' 	=> 'front.view.article',
+    'uses' 	=> 'FrontController@viewArticle'
+]);
+
 //
 // rutas de administracion
 //
