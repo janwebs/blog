@@ -48,19 +48,23 @@ Route::get('articles/{slug}', [
 //
 // rutas de administracion
 //
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'],  function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']],  function(){
 //Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('/',['as' => 'admin.index', function () {
     	return view('admin.index');
     }]);
 
-	// resource recibe dos parametros, el modelo y el controlador a usar
-	Route::resource('users', 'UsersController');
-	Route::get('users/{id}/destroy', [
-		'uses' 	=> 'UsersController@destroy',
-		'as'	=> 'admin.users.destroy'
-	]);
+	Route::group(['middleware' => ['admin']],  function(){
+
+		// resource recibe dos parametros, el modelo y el controlador a usar
+		Route::resource('users', 'UsersController');
+		Route::get('users/{id}/destroy', [
+			'uses' 	=> 'UsersController@destroy',
+			'as'	=> 'admin.users.destroy'
+		]);
+
+	});
 
 	Route::resource('categories', 'CategoriesController');
 	Route::get('categories/{id}/destroy', [

@@ -6,7 +6,7 @@
 	<h2>Blog Laravel</h1>
 	<a href="{{ route('admin.index') }}" class="btn btn-success">Entrar</a>
 	<hr>
-	<h3 class="title-font left">Ultimos Articulos</h3>
+	<h3 class="title-font left">{{ trans('app.label_last_articles') }}</h3>
 	<div class="row">
 		<div class="col-md-8">
 			<div class="row">

@@ -47,4 +47,9 @@ class User extends Model implements AuthenticatableContract,
         return $query->where('name', 'LIKE', "%$name%");
     }
 
+    public function admin()
+    {
+        return $this->type === 'admin';
+    }
+
 }

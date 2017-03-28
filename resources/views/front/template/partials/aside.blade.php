@@ -1,7 +1,7 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Categorias</h3>
+		<h3 class="panel-title">{{ trans('app.label_categories') }}</h3>
 	</div>
 	<div class="panel-body">
 		@foreach($categories as $category)
@@ -19,7 +19,7 @@
 </div>
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title">Tags</h3>
+		<h3 class="panel-title">{{ trans('app.label_tags') }}</h3>
 	</div>
 	<div class="panel-body">
 		@foreach($tags as $tag)
